@@ -1,4 +1,4 @@
-mod caesar;
-pub mod menu; // <- NOT pub on purpose
+pub mod menu;
+mod solvers;
 
-pub use menu::run; // 😎 Export just ONE function: run() from menu.rs
+pub use menu::run; // 🧠 only exposing run()
