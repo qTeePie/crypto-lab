@@ -1,22 +1,39 @@
-use super::solvers;
+use crate::sub_cipher::solvers;
 use std::io::{self, Write};
 
 pub fn run() {
-    println!("Substitution Ciphers Submenu");
-    println!("===========================");
+    loop {
+        println!("\n=== Substitution Ciphers ===");
+        let msg = ask("🔤 Enter your message (or type 'exit'): ");
+        if msg.eq_ignore_ascii_case("exit") {
+            println!("💅 Bye.");
+            break;
+        }
 
-    print!("🔤 Enter your message: ");
-    io::stdout().flush().unwrap(); //
-    let mut message = String::new();
-    io::stdin().read_line(&mut message).unwrap();
+        println!("1) Encrypt with Caesar 🔒");
+        println!("2) Decrypt with Caesar 🔑");
 
-    print!("🔢 Enter shift amount (e.g. 3): ");
+        let choice = ask("👉 Choice: ");
+
+        match choice.trim() {
+            "1" => {
+                let shift: i8 = ask("🔢 Shift: ").parse().unwrap_or(0);
+                println!("shift {}", shift);
+                println!("Encrypted: {}", solvers::caesar_cipher(&msg, shift));
+            }
+            "2" => {
+                let shift: i8 = ask("🔢 Shift: ").parse().unwrap_or(0);
+                println!("Decrypted: {}", solvers::caesar_cipher(&msg, -shift));
+            }
+            _ => println!("❌ Invalid choice"),
+        }
+    }
+}
+
+fn ask(prompt: &str) -> String {
+    print!("{prompt}");
     io::stdout().flush().unwrap();
-    let mut shift_str = String::new();
-    io::stdin().read_line(&mut shift_str).unwrap();
-
-    let shift: i8 = shift_str.trim().parse().unwrap_or(0);
-
-    let encrypted = solvers::caesar_cipher(&message.trim(), shift);
-    println!("🔒 Encrypted Message: {encrypted}");
+    let mut buf = String::new();
+    io::stdin().read_line(&mut buf).unwrap();
+    buf.trim().to_string()
 }

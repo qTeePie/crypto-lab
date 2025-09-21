@@ -16,6 +16,8 @@ A nots sheet for specs on the utils in this solution, with emphasis on time comp
 
 ### Euclidean
 
+(read page 14 claims bottom page for explanation for O(log n))
+
 ```rust
 fn gcd(a: usize, b: usize) -> usize {
     let mut x = a;

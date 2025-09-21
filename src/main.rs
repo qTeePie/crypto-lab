@@ -2,7 +2,7 @@ mod sub_cipher;
 use std::io::{self, Write};
 
 fn main() {
-    println!("✨🔐 Welcome to the Cryptographic Playground 🔐✨");
+    println!("✨🔐 Welcome to tiny Crypto Lab 🔐✨");
     println!("===============================================");
     println!("🧠 Menu for Cryptographic Functions:");
     println!("-----------------------------------------------");
@@ -22,7 +22,7 @@ fn main() {
                 sub_cipher::run();
             }
             "2" => {
-                println!("👋 See ya! Stay encrypted ✨🛡️");
+                println!("💅 Bye.");
                 break;
             }
             _ => {
