@@ -1,4 +1,5 @@
 mod sub_cipher;
+mod utils;
 use std::io::{self, Write};
 
 fn main() {
@@ -11,7 +12,7 @@ fn main() {
     println!("===============================================");
 
     loop {
-        print!("👉 Enter your choice (0-1): ");
+        print!("👉 Enter your choice (0-2): ");
         io::stdout().flush().unwrap();
 
         let mut choice = String::new();
@@ -22,6 +23,16 @@ fn main() {
                 sub_cipher::run();
             }
             "2" => {
+                let a_str = ask("🔢 Input number a: ");
+                let b_str = ask("🔢 Input number b: ");
+
+                let a: i64 = a_str.parse().unwrap();
+                let b: i64 = b_str.parse().unwrap();
+
+                let (g, u, v) = utils::gcd::extended_gcd(a, b);
+                println!("gcd = {}, u = {}, v = {}", g, u, v);
+            }
+            "-1" => {
                 println!("💅 Bye.");
                 break;
             }
@@ -30,4 +41,12 @@ fn main() {
             }
         }
     }
+}
+
+fn ask(prompt: &str) -> String {
+    print!("{prompt}");
+    io::stdout().flush().unwrap();
+    let mut buf = String::new();
+    io::stdin().read_line(&mut buf).unwrap();
+    buf.trim().to_string()
 }

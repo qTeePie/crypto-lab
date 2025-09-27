@@ -18,7 +18,7 @@ pub fn shift_char(c: char, shift: i8) -> char {
     };
 
     let c_pos = c as i8 - base; // position of character in alphabet, subtract base from ASCII value of c
-    let shifted = (c_pos + shift).rem_euclid(26);
+    let shifted = (c_pos + shift).rem_euclid(26); // * see comment below
     (base + shifted) as u8 as char // return the character by adding base
 
     /*
