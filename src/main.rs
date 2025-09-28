@@ -12,7 +12,6 @@ fn main() {
         println!("-----------------------------------------------");
         println!("1️. Substitution Ciphers");
         println!("2️⃣. Compute GCD");
-        println!("0️⃣. Exit");
         println!("===============================================");
 
         print!("👉 Enter your choice (or type 'exit'): ");
@@ -21,7 +20,7 @@ fn main() {
         let mut choice = String::new();
         io::stdin().read_line(&mut choice).unwrap();
 
-        if choice.eq_ignore_ascii_case("exit") || choice.trim() == "0" {
+        if choice.eq_ignore_ascii_case("exit") {
             println!("💅 Bye.");
             break;
         }

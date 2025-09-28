@@ -29,23 +29,15 @@ pub fn extended_gcd(a: i64, b: i64) -> (i64, i64, i64) {
     let mut x1 = 0;
 
     while r1 != 0 {
-        // r0, r1 = current remainders
-        // x0, x1 = coefficients for `a` that correspond to r0, r1
-        while r1 != 0 {
-            let q = r0 / r1;
+        let q = r0 / r1;
 
-            // 1) Compute the *next* pair
-            let r_next = r0 - q * r1; // this is r_{k+1}
-            let x_next = x0 - q * x1; // this is x_{k+1} (coeff for r_{k+1})
+        let new_r = r0 - q * r1;
+        r0 = r1;
+        r1 = new_r;
 
-            // 2) Shift the "current" pair forward together
-            r0 = r1; // (r_{k-1}, r_k) -> (r_k, ...)
-            x0 = x1; // keep r0 aligned with its coeff x0
-
-            // 3) Install the *next* pair together
-            r1 = r_next; // ... -> (..., r_{k+1})
-            x1 = x_next; // align r1 with x1
-        }
+        let new_x = x0 - q * x1;
+        x0 = x1;
+        x1 = new_x;
     }
 
     let g = r0;
