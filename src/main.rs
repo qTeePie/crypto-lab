@@ -11,7 +11,7 @@ fn main() {
         println!("🧠 Menu for Cryptographic Functions:");
         println!("-----------------------------------------------");
         println!("1️. Substitution Ciphers");
-        println!("2️⃣. Compute GCD");
+        println!("2️⃣. Utils");
         println!("===============================================");
 
         print!("👉 Enter your choice (or type 'exit'): ");
@@ -26,22 +26,8 @@ fn main() {
         }
 
         match choice.trim() {
-            "1" => {
-                sub_cipher::run();
-                pause("⏸ Press ENTER to return to menu...");
-            }
-            "2" => {
-                let a_str = ask("🔢 Input number a: ");
-                let b_str = ask("🔢 Input number b: ");
-
-                let a: i64 = a_str.parse().unwrap();
-                let b: i64 = b_str.parse().unwrap();
-
-                let (g, u, v) = utils::gcd::extended_gcd(a, b);
-                println!("gcd = {}, u = {}, v = {}", g, u, v);
-
-                pause("⏸ Press ENTER to return to menu...");
-            }
+            "1" => run_menu_section("Substitution Ciphers", || sub_cipher::run()),
+            "2" => run_menu_section("Utils", || utils::menu::run()),
             _ => {
                 println!("❌ Invalid choice, bestie. Try again 💅");
                 pause("⏸ Press ENTER to return to menu...");
@@ -50,12 +36,12 @@ fn main() {
     }
 }
 
-fn ask(prompt: &str) -> String {
-    print!("{prompt}");
-    io::stdout().flush().unwrap();
-    let mut buf = String::new();
-    io::stdin().read_line(&mut buf).unwrap();
-    buf.trim().to_string()
+/// Runs a section: clears screen, prints a header, runs the code, pauses after.
+fn run_menu_section(section: &str, action: fn()) {
+    clear_screen();
+    println!("🚀 Running {section}...");
+    action();
+    pause("⏸ Press ENTER to return to menu...");
 }
 
 fn pause(message: &str) {

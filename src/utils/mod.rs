@@ -1,2 +1,2 @@
-pub mod gcd;
-pub mod mod_power;
+pub mod math;
+pub mod menu; // we want the user to be able to call utils funcs
