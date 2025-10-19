@@ -1,4 +1,4 @@
-use crate::utils::math::{gcd, ord_p};
+use crate::utils::math::{gcd, order_prime};
 use std::io::{self, Write};
 
 pub fn run() {
@@ -17,7 +17,7 @@ pub fn run() {
             "2" => {
                 let n: u64 = ask("n = ").parse().unwrap_or(0);
                 let p: u64 = ask("p = ").parse().unwrap_or(0);
-                println!("ord_{}({}) = {}", p, n, ord_p::ord_p(n, p));
+                println!("ord_{}({}) = {}", p, n, order_prime::ord_p(n, p));
             }
             "exit" => {
                 println!("💅 exiting utils.");
