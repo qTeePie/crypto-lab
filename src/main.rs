@@ -1,5 +1,5 @@
+mod number_theory;
 mod sub_cipher;
-mod utils;
 use std::io::{self, Write};
 
 fn main() {
@@ -27,7 +27,7 @@ fn main() {
 
         match choice.trim() {
             "1" => run_menu_section("Substitution Ciphers", || sub_cipher::run()),
-            "2" => run_menu_section("Utils", || utils::menu::run()),
+            "2" => run_menu_section("Utils", || number_theory::menu::run()),
             _ => {
                 println!("❌ Invalid choice, bestie. Try again 💅");
                 pause("⏸ Press ENTER to return to menu...");

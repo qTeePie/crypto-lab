@@ -1,4 +1,4 @@
-use crate::utils::math::{gcd, ord_p};
+use crate::number_theory::factors::{gcd, ord_p};
 use std::io::{self, Write};
 
 pub fn run() {
@@ -20,7 +20,7 @@ pub fn run() {
                 println!("ord_{}({}) = {}", p, n, ord_p::ord_p(n, p));
             }
             "exit" => {
-                println!("💅 exiting utils.");
+                println!("💅 bye.");
                 break;
             }
             _ => println!("❌ invalid choice"),
