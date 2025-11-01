@@ -1,13 +1,15 @@
 use crate::number_theory::factors::{gcd, ord_p};
+use crate::number_theory::modular_arithmetic::inverse::{self, inverse_by_extended_euclidean};
 use std::io::{self, Write};
 
 pub fn run() {
     loop {
-        println!("\n=== 🧮 Utils Playground ===");
+        println!("\n=== 🧮 Number Theory ===");
         println!("1) Extended gcd(a, b)");
         println!("2) Compute ord_p(n, p)");
+        println!("3) Compute modular inverse");
 
-        match ask("👉 Enter your choice (or type 'exit')").trim() {
+        match ask("👉 Enter your choice (or type 'exit') ").trim() {
             "1" => {
                 let a: i64 = ask("a = ").parse().unwrap_or(0);
                 let b: i64 = ask("b = ").parse().unwrap_or(0);
@@ -18,6 +20,14 @@ pub fn run() {
                 let n: u64 = ask("n = ").parse().unwrap_or(0);
                 let p: u64 = ask("p = ").parse().unwrap_or(0);
                 println!("ord_{}({}) = {}", p, n, ord_p::ord_p(n, p));
+            }
+            "3" => {
+                let a: i64 = ask("a = ").parse().unwrap_or(0);
+                let p: i64 = ask("p = ").parse().unwrap_or(0);
+                match inverse_by_extended_euclidean(a, p) {
+                    Some(inv) => println!("{}⁻¹ mod {} = {}", a, p, inv),
+                    None => println!("No inverse exists because gcd({}, {}) ≠ 1", a, p),
+                }
             }
             "exit" => {
                 println!("💅 bye.");

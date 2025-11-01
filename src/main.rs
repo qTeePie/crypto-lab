@@ -10,8 +10,8 @@ fn main() {
         println!("===============================================");
         println!("🧠 Menu for Cryptographic Functions:");
         println!("-----------------------------------------------");
-        println!("1️. Substitution Ciphers");
-        println!("2️⃣. Utils");
+        println!("1️. Number Theory");
+        println!("2️⃣. Substitution Ciphers");
         println!("===============================================");
 
         print!("👉 Enter your choice (or type 'exit'): ");
@@ -26,12 +26,12 @@ fn main() {
         }
 
         match choice.trim() {
-            "1" => run_menu_section("Substitution Ciphers", || sub_cipher::run()),
-            "2" => run_menu_section("Utils", || number_theory::menu::run()),
+            "1" => run_menu_section("Utils", || number_theory::menu::run()),
             _ => {
                 println!("❌ Invalid choice, bestie. Try again 💅");
                 pause("⏸ Press ENTER to return to menu...");
             }
+            "2" => run_menu_section("Substitution Ciphers", || sub_cipher::run()),
         }
     }
 }
