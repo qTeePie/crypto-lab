@@ -1,10 +1,10 @@
 /// Efficient approach to computing factors of a number.
 /// Time Complexity: O( sqrt(n) )
-fn list_factors(number: i128) -> Vec<i128> {
+fn list_factors(number: i64) -> Vec<i64> {
     // Initialize factors Vector
-    let mut factors: Vec<i128> = Vec::new();
+    let mut factors: Vec<i64> = Vec::new();
 
-    let mut i: i128 = 1;
+    let mut i: i64 = 1;
 
     // Check till i is less than or equal to square root n
     while i * i <= number {
@@ -31,9 +31,9 @@ fn list_factors(number: i128) -> Vec<i128> {
 
 /// Naive approach to computing factors of a number.
 /// Time Complexity: O(n)
-fn list_factors_naive(number: i128) -> Vec<i128> {
+fn list_factors_naive(number: i64) -> Vec<i64> {
     // Initialize factors Vector
-    let mut factors: Vec<i128> = Vec::new();
+    let mut factors: Vec<i64> = Vec::new();
 
     // Check all the numbers from 1 to n, both inclusive
     for i in 1..(number + 1) {
